@@ -1,6 +1,8 @@
-var mongoose = require('mongoose');
-var passport = require('passport');
 var _ = require('underscore');
+var mongoose = require('mongoose');
+var nodemailer = require("nodemailer");
+var mail = require("nodemailer").mail;
+var passport = require('passport');
 var User = require('../models/User');
 
 /**
@@ -47,6 +49,66 @@ exports.postLogin = function(req, res, next) {
       return res.redirect('/');
     });
   })(req, res, next);
+};
+
+/**
+ * GET /login/forgot
+ * Forgot your password page.
+ */
+
+exports.getForgotPassword = function(req, res) {
+  if (req.user) return res.redirect('/');
+  res.render('account/forgot', {
+    title: 'Forgot Password'
+  });
+};
+
+/**
+ * POST /login/forgot
+ * Reset Password.
+ * @param {string} email
+ */
+
+exports.postForgotPassword = function(req, res) {
+  req.assert('email', 'Email cannot be blank').notEmpty();
+  req.assert('email', 'Email is not valid').isEmail();
+
+  var errors = req.validationErrors();
+
+  if (errors) {
+    req.flash('errors', errors);
+    return res.redirect('/login/forgot');
+  }
+
+  var transport = nodemailer.createTransport('direct', { debug: true });
+
+  transport.sendMail({
+    from: 'Sahat Yalkabov <sakhat@gmail.com>', // sender address
+    to: req.body.email,
+    subject: 'Rest your password', // Subject line
+    html: "<b>Hello world ✔</b>" // html body
+  }, function(err, response) {
+    if (err) {
+      req.flash('errors', { msg: err });
+      return res.redirect('/login/forgot');
+    }
+
+    // response.statusHandler only applies to 'direct' transport
+    response.statusHandler.once("failed", function(data) {
+      console.log(
+        "Permanently failed delivering message to %s with the following response: %s",
+        data.domain, data.response);
+    });
+
+    response.statusHandler.once("requeue", function(data) {
+      console.log("Temporarily failed delivering message to %s", data.domain);
+    });
+
+    response.statusHandler.once("sent", function(data) {
+      console.log("Message was accepted by %s", data.domain);
+    });
+  });
+
 };
 
 /**
@@ -192,7 +254,9 @@ exports.getOauthUnlink = function(req, res, next) {
     if (err) return next(err);
 
     user[provider] = undefined;
-    user.tokens = _.reject(user.tokens, function(token) { return token.kind === provider; });
+    user.tokens = _.reject(user.tokens, function(token) {
+      return token.kind === provider;
+    });
 
     user.save(function(err) {
       if (err) return next(err);
