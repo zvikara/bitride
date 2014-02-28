@@ -1,10 +1,16 @@
 {
-  "name": "hackathon-starter",
+  "name": "rideshare",
   "version": "0.0.0",
+  "description": "Ride sharing Israeli second bitcoin hackathon.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sahat/hackathon-starter.git"
+    "url": "https://github.com/zvikara/rideshare.git"
   },
+  "bugs": {
+    "url": "https://github.com/zvikara/rideshare/issues"
+  },
+  "author": "Zvika Rap",
+  "license": "MIT",
   "scripts": {
     "start": "node app.js",
     "test": "mocha"
@@ -51,5 +57,8 @@
     "mocha": "~1.17.1",
     "supertest": "~0.9.0",
     "zombie": "~2.0.0-alpha30"
+  },
+  "engines": {
+    "node": "0.10.x"
   }
 }
