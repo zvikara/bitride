@@ -1,13 +1,13 @@
 {
-  "name": "rideshare",
+  "name": "bitride",
   "version": "0.0.0",
   "description": "Ride sharing Israeli second bitcoin hackathon.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/zvikara/rideshare.git"
+    "url": "https://github.com/zvikara/bitride.git"
   },
   "bugs": {
-    "url": "https://github.com/zvikara/rideshare/issues"
+    "url": "https://github.com/zvikara/bitride/issues"
   },
   "author": "Zvika Rap",
   "license": "MIT",
