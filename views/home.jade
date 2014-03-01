@@ -12,11 +12,11 @@ block content
         input(type='hidden', name='_csrf', value=token)
         .radio
           label
-            input#rider(type='radio', name='usertype', value='driver', checked)
+            input#rider(type='radio', name='ridetype', value='driver', checked)
             | I am looking for a drive
         .radio
           label
-            input#driver(type='radio', name='usertype', value='rider')
+            input#driver(type='radio', name='ridetype', value='rider')
             | I can share my drive
         .form-group
           label(for='from')

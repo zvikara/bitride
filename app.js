@@ -10,8 +10,8 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var expressValidator = require('express-validator');
 var connectAssets = require('connect-assets');
-
-
+var exphbs  = require('express3-handlebars');
+var engines = require('consolidate');
 
 /**
  * Load controllers.
@@ -59,6 +59,8 @@ var month = (day * 30);
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+app.engine('jade', engines.jade);
+app.engine('handlebars', engines.handlebars);
 app.use(connectAssets({
   paths: ['public/css', 'public/js'],
   helperContext: app.locals

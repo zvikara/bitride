@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1 Search Results
+  h2 #{user.profile.name || user.email || user.id}
+  ul.search-rides
+  for ride in rides
+    li
+      img.search-image(src='#{user.profile.picture}')
+      | #{ride.name} : #{ride.from} => #{ride.from}
