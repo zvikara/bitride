@@ -1,10 +1,14 @@
 extends layout
 
 block content
-  h1 Search Results
-  h2 #{user.profile.name || user.email || user.id}
+  if thisride.driver
+    h2 People looking for rides
+  else
+    h2 Drivers offering rides
   ul.search-rides
-  for ride in rides
-    li
-      img.search-image(src='#{user.profile.picture}')
-      | #{ride.name} : #{ride.from} => #{ride.from}
+    for ride in rides
+      li.well.well-sm
+        img.search-image(src='#{user.profile.picture}')
+        .search-ride-name #{ride.name}
+        .search-ride-from from #{ride.from}
+        .search-ride-to to #{ride.to}

@@ -43,7 +43,7 @@ exports.postSearch = function(req, res) {
   });
 
   Ride.find(
-    {},
+    { driver: !driver },
     function(err, rides) {
       if (!err){ 
         console.log(rides);
@@ -51,7 +51,7 @@ exports.postSearch = function(req, res) {
         //res.redirect('/');
         res.render('search', {
           title: 'Search',
-          //ride: ride,
+          thisride: ride,
           rides: rides
         });
       }
