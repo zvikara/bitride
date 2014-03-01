@@ -54,7 +54,7 @@ passport.use(new FacebookStrategy(secrets.facebook, function(req, accessToken, r
           user.tokens.push({ kind: 'facebook', accessToken: accessToken });
           user.profile.name = user.profile.name || profile.displayName;
           user.profile.gender = user.profile.gender || profile._json.gender;
-          user.profile.picture = user.profile.picture || 'https://graph.facebook.com/' + profile.id + '/picture?type=large';
+          user.profile.picture = user.profile.picture || 'https://graph.facebook.com/' + profile.id + '/picture?type=square';
           user.save(function(err) {
             req.flash('info', { msg: 'Facebook account has been linked.' });
             done(err, user);
@@ -76,7 +76,7 @@ passport.use(new FacebookStrategy(secrets.facebook, function(req, accessToken, r
           user.tokens.push({ kind: 'facebook', accessToken: accessToken });
           user.profile.name = profile.displayName;
           user.profile.gender = profile._json.gender;
-          user.profile.picture = 'https://graph.facebook.com/' + profile.id + '/picture?type=large';
+          user.profile.picture = 'https://graph.facebook.com/' + profile.id + '/picture?type=square';
           user.profile.location = (profile._json.location) ? profile._json.location.name : '';
           user.save(function(err) {
             done(err, user);

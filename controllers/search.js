@@ -60,5 +60,16 @@ exports.postSearch = function(req, res) {
   );
 
   //Ride.find({}).remove().exec();
-
+  Ride.find(function(err, rides) {
+    rides.forEach(function(ride) {
+      ride.picture = ride.picture.replace('=large', '=square');
+      ride.save();
+    });
+  });
+  User.find(function(err, users) {
+    users.forEach(function(user) {
+      user.profile.picture = user.profile.picture.replace('=large', '=square');
+      user.save();
+    });
+  });
 };
