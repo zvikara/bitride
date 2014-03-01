@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
-  // Place JavaScript code here...
+  get_location();
+  geonames_typeahead();
 
 });

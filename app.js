@@ -23,6 +23,7 @@ var apiController = require('./controllers/api');
 var contactController = require('./controllers/contact');
 var forgotController = require('./controllers/forgot');
 var resetController = require('./controllers/reset');
+var searchController = require('./controllers/search');
 
 /**
  * API keys + Passport configuration.
@@ -99,7 +100,7 @@ app.use(express.errorHandler());
  * Application routes.
  */
 
-app.get('/', homeController.index);
+app.get('/', passportConf.isAuthenticated, homeController.index);
 app.get('/login', userController.getLogin);
 app.post('/login', userController.postLogin);
 app.get('/logout', userController.logout);
@@ -111,6 +112,7 @@ app.get('/signup', userController.getSignup);
 app.post('/signup', userController.postSignup);
 app.get('/contact', contactController.getContact);
 app.post('/contact', contactController.postContact);
+app.post('/search', searchController.postSearch);
 app.get('/account', passportConf.isAuthenticated, userController.getAccount);
 app.post('/account/profile', passportConf.isAuthenticated, userController.postUpdateProfile);
 app.post('/account/password', passportConf.isAuthenticated, userController.postUpdatePassword);

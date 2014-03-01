@@ -8,8 +8,24 @@ block content
     | Made for the second Israeli Bitcoin hackathon.
   .row
     .col-sm-4
-      form(method='POST')
+      form(method='POST', role='form', action='/search')
         input(type='hidden', name='_csrf', value=token)
-      a.btn.btn-block.btn-facebook.btn-social(href='/auth/facebook')
-        i.fa.fa-facebook
-        | Sign in with Facebook
+        .radio
+          label
+            input#rider(type='radio', name='usertype', value='driver', checked)
+            | I am looking for a drive
+        .radio
+          label
+            input#driver(type='radio', name='usertype', value='rider')
+            | I can share my drive
+        .form-group
+          label(for='from')
+            i.fa.fa-compass
+            | From
+          input#from.form-control(name='from', placeholder='origin')
+        .form-group
+          label(for='to')
+            i.fa.fa-compass
+            | To
+          input#to.form-control.typeahead(name='to', placeholder='destination' data-provide='typeahead' autocomplete='off')
+        button.btn.btn-default(type='submit') Search
