@@ -1,31 +1,25 @@
 extends layout
 
 block content
-  h1 Bit Ride
-  p.lead
-    | Share rides with bitcoins and facebook friends.
-    br
-    | Made for the second Israeli Bitcoin hackathon.
+  h2 I am a
   .row
     .col-sm-4
       form(method='POST', role='form', action='/search')
         input(type='hidden', name='_csrf', value=token)
-        .radio
+        .radio-inline
           label
-            input#rider(type='radio', name='ridetype', value='rider', checked)
-            | I am looking for a ride
-        .radio
+            input#rider.radioImageSelect(type='radio', name='ridetype', value='rider', data-image='img/rider.png')
+        .radio-inline
           label
-            input#driver(type='radio', name='ridetype', value='driver')
-            | I can share my drive
+            input#driver.radioImageSelect(type='radio', name='ridetype', data-image='img/driver.png', value='driver')
         .form-group
           label(for='from')
             i.fa.fa-compass
-            | From
+            | Going from
           input#from.form-control(name='from', placeholder='origin')
         .form-group
           label(for='to')
             i.fa.fa-compass
-            | To
+            | Going to
           input#to.form-control.typeahead(name='to', placeholder='destination' data-provide='typeahead' autocomplete='off')
         button.btn.btn-default(type='submit') Search

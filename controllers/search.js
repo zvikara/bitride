@@ -46,8 +46,8 @@ exports.postSearch = function(req, res) {
     { driver: !driver },
     function(err, rides) {
       if (!err){ 
-        console.log(rides);
-        req.flash('success', { msg: 'Seaching from ' + ride.from + ' to ' + ride.to  });
+        //console.log(rides);
+        //req.flash('success', { msg: 'Seaching from ' + ride.from + ' to ' + ride.to  });
         //res.redirect('/');
         res.render('search', {
           title: 'Search',

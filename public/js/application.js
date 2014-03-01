@@ -13,5 +13,6 @@
 //= require lib/bootstrap.min
 //= require lib/typeahead.min
 //= require lib/hogan.common
+//= require lib/jquery.radioImageSelect
 //= require geo
 //= require main
