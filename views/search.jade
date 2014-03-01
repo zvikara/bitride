@@ -8,7 +8,7 @@ block content
   ul.search-rides
     for ride in rides
       li.well.well-sm
-        img.search-image(src='#{user.profile.picture}')
+        img.search-image(src='#{ride.picture}')
         .search-item.details
           .search-ride-name #{ride.name}
           .search-ride-from from #{ride.from}
